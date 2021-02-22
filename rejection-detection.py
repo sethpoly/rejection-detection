@@ -10,20 +10,34 @@ password = os.environ['PASSWORD']
 
 # create IMAP4 class with SSL
 imap = imaplib.IMAP4_SSL('imap.gmail.com')
+
+
 # authenticate (if fails: <allow less secure apps in gmail account>)
-try:
-    (retcode, capabilities) = imap.login(username, password)
-    print(f'Logged in as {username}.')
-except imaplib.IMAP4.error:
-    print('Log in failed.')
+def authenticate():
+    try:
+        (retcode, capabilities) = imap.login(username, password)
+        print(f'Logged in as {username}.')
+    except imaplib.IMAP4.error:
+        print('Log in failed.')
+
+# Close the imap connection
+def close_connection():
+    try:
+        imap.close()
+        print('Closed the connection.')
+    except imaplib.IMAP4.error:
+        print('Error: Connection failed to close.')
+
+
+# Login credentials with mail client
+authenticate()
 
 # Connect to mailbox
 imap.select('INBOX')
-
 n = 0
 (retcode, messages) = imap.search(None, '(UNSEEN)')  # Filter by unseen messages
 if retcode == 'OK':
-    for num in messages[0].split():
+    for num in messages[0].split():  # Loop each unread email
         print('Processing: ')
         n = n + 1
         typ, data = imap.fetch(num, '(RFC822)')
@@ -46,8 +60,7 @@ if retcode == 'OK':
                 typ, data = imap.store(num, '+FLAGS', '\\Seen')  # Mark msg as seen
                 print(body)
 
-try:
-    imap.close()
-    print('Closed the connection.')
-except imaplib.IMAP4.error:
-    print('Error: Connection failed to close.')
+# Close imap connection
+close_connection()
+
+
