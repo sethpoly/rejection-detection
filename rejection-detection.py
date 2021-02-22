@@ -36,12 +36,16 @@ if retcode == 'OK':
 
                 # Grab the body of the email
                 if original.is_multipart():
-                    for payload in original.get_payload():
-                        print(payload.get_payload())
-                else:
-                    print(original.get_payload())
+                    for part in original.walk():
+                        try:
+                            if part.get_content_type().lower() == 'text/plain':
+                                body = part.get_payload(decode=True).decode()
+                        except:
+                            pass
 
                 typ, data = imap.store(num,'+FLAGS','\\Seen') # Mark msg as seen
+                print(body)
+
 try:
     imap.close()
     print('Closed the connection.')
