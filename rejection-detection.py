@@ -13,7 +13,7 @@ imap = imaplib.IMAP4_SSL('imap.gmail.com')
 # authenticate (if fails: <allow less secure apps in gmail account>)
 try:
     (retcode, capabilities) = imap.login(username, password)
-    print(f'Logged in as {username}.' )
+    print(f'Logged in as {username}.')
 except imaplib.IMAP4.error:
     print('Log in failed.')
 
@@ -21,7 +21,7 @@ except imaplib.IMAP4.error:
 imap.select('INBOX')
 
 n = 0
-(retcode, messages) = imap.search(None, '(UNSEEN)') # Filter by unseen messages
+(retcode, messages) = imap.search(None, '(UNSEEN)')  # Filter by unseen messages
 if retcode == 'OK':
     for num in messages[0].split():
         print('Processing: ')
@@ -38,12 +38,12 @@ if retcode == 'OK':
                 if original.is_multipart():
                     for part in original.walk():
                         try:
-                            if part.get_content_type().lower() == 'text/plain':
+                            if part.get_content_type().lower() == 'text/plain':  # Grab only plaintext
                                 body = part.get_payload(decode=True).decode()
                         except:
                             pass
 
-                typ, data = imap.store(num,'+FLAGS','\\Seen') # Mark msg as seen
+                typ, data = imap.store(num, '+FLAGS', '\\Seen')  # Mark msg as seen
                 print(body)
 
 try:
@@ -51,4 +51,3 @@ try:
     print('Closed the connection.')
 except imaplib.IMAP4.error:
     print('Error: Connection failed to close.')
-
