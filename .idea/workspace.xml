@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0f510b1-d374-4663-85e6-332e8ba27b62" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rejection-detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/rejection-detection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +32,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Seth\Desktop\rejection-automation" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.service-account">
     <configuration name="rejection-detection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="rejection-automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -66,8 +71,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="service-account" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="rejection-automation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/service-account.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.service-account" />
         <item itemvalue="Python.rejection-detection" />
       </list>
     </recent_temporary>
@@ -86,29 +113,34 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="798" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613928276831">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614109382910">
+      <screen x="-1080" y="-290" width="1080" height="1890" />
     </state>
+    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614109382910" />
     <state x="798" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1613928276831" />
-    <state width="1059" height="526" key="GridCell.Tab.0.bottom" timestamp="1614012084852">
+    <state width="1059" height="526" key="GridCell.Tab.0.bottom" timestamp="1614111878370">
       <screen x="-1080" y="-290" width="1080" height="1890" />
     </state>
-    <state width="1059" height="526" key="GridCell.Tab.0.bottom/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614012084852" />
+    <state width="1059" height="526" key="GridCell.Tab.0.bottom/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614111878370" />
     <state width="1273" height="279" key="GridCell.Tab.0.bottom/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1613928582582" />
-    <state width="1059" height="526" key="GridCell.Tab.0.center" timestamp="1614012084852">
+    <state width="1059" height="526" key="GridCell.Tab.0.center" timestamp="1614111878370">
       <screen x="-1080" y="-290" width="1080" height="1890" />
     </state>
-    <state width="1059" height="526" key="GridCell.Tab.0.center/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614012084852" />
+    <state width="1059" height="526" key="GridCell.Tab.0.center/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614111878370" />
     <state width="1273" height="279" key="GridCell.Tab.0.center/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1613928582582" />
-    <state width="1059" height="526" key="GridCell.Tab.0.left" timestamp="1614012084852">
+    <state width="1059" height="526" key="GridCell.Tab.0.left" timestamp="1614111878370">
       <screen x="-1080" y="-290" width="1080" height="1890" />
     </state>
-    <state width="1059" height="526" key="GridCell.Tab.0.left/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614012084852" />
+    <state width="1059" height="526" key="GridCell.Tab.0.left/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614111878370" />
     <state width="1273" height="279" key="GridCell.Tab.0.left/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1613928582582" />
-    <state width="1059" height="526" key="GridCell.Tab.0.right" timestamp="1614012084852">
+    <state width="1059" height="526" key="GridCell.Tab.0.right" timestamp="1614111878370">
       <screen x="-1080" y="-290" width="1080" height="1890" />
     </state>
-    <state width="1059" height="526" key="GridCell.Tab.0.right/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614012084852" />
+    <state width="1059" height="526" key="GridCell.Tab.0.right/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614111878370" />
     <state width="1273" height="279" key="GridCell.Tab.0.right/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1613928582582" />
+    <state x="-948" y="388" key="Vcs.Push.Dialog.v2" timestamp="1614110128196">
+      <screen x="-1080" y="-290" width="1080" height="1890" />
+    </state>
+    <state x="-948" y="388" key="Vcs.Push.Dialog.v2/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1614110128196" />
   </component>
 </project>
