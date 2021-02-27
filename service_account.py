@@ -25,6 +25,6 @@ class Spreadsheet:
             print('Spreadsheet does not exist.')
 
 
-app_sheet = Spreadsheet('Applications').sheet
-
-print(app_sheet.acell('A400').value)
+# app_sheet = Spreadsheet('Applications').sheet
+#
+# print(app_sheet.acell('A400').value)
