@@ -2,15 +2,13 @@ import gspread
 import pandas as pd
 from oauth2client.service_account import ServiceAccountCredentials
 
+
 class Spreadsheet:
-    # define the scope
-    scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']  # define the scope
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('google_key.json', scope)  # account credentials
+    client = gspread.authorize(credentials)  # authorize clientsheet
 
-    # account credentials
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('google_key.json', scope)
-
-    # authorize clientsheet
-    client = gspread.authorize(credentials)
+    sheet = None  # Specific sheet in CSV file
 
     # Grab the name of spreadsheet on init
     def __init__(self, sheet_name):
@@ -21,9 +19,9 @@ class Spreadsheet:
     def open_sheet(self):
         try:
             self.sheet = self.client.open(self.sheet_name).sheet1
+            print(f'Opened sheet: {self.sheet_name}')
         except gspread.SpreadsheetNotFound:
             print('Spreadsheet does not exist.')
-
 
 # app_sheet = Spreadsheet('Applications').sheet
 #
