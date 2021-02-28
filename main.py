@@ -1,8 +1,12 @@
 import imaplib
 import email
-from email.header import decode_header
-import webbrowser
 import os
+import reject_model
+
+# setup rejection detection data model
+classifier = reject_model.Classifier()
+classifier.clean_data()
+classifier.fit()
 
 # account credentials
 username = os.environ['USERNAME']
@@ -10,7 +14,6 @@ password = os.environ['PASSWORD']
 
 # create IMAP4 class with SSL
 imap = imaplib.IMAP4_SSL('imap.gmail.com')
-
 
 # authenticate (if fails: <allow less secure apps in gmail account>)
 def authenticate():
@@ -34,8 +37,8 @@ authenticate()
 
 # Connect to mailbox
 imap.select('INBOX')
-n = 0
 (retcode, messages) = imap.search(None, '(UNSEEN)')  # Filter by unseen messages
+n = 0
 if retcode == 'OK':
     for num in messages[0].split():  # Loop each unread email
         print('Processing: ')
@@ -58,7 +61,13 @@ if retcode == 'OK':
                             pass
 
                 typ, data = imap.store(num, '+FLAGS', '\\Seen')  # Mark msg as seen
-                print(body)
+                print(body)  # Prints the body of the email
+
+                prediction = classifier.predict(body)
+                print(prediction)
+                if prediction == 'reject': # move to reject inbox
+                    typ, data = imap.store(num, '+X-GM-LABELS', '"Application Updates"')
+
 
 # Close imap connection
 close_connection()
