@@ -14,8 +14,10 @@ from sklearn.model_selection import cross_val_score
 class Classifier:
     def __init__(self):
         self.df = self.get_csv()
-        self.x_train, self.x_test, self.y_train, self.y_test = None
-
+        self.x_train, self.x_test, self.y_train, self.y_test = None, None, None, None
+        self.nb = MultinomialNB()
+        self.vectorizer = CountVectorizer()
+        self.encoder = LabelEncoder()
 
     # Retrieve most recent rejection data set from sheets API
     def get_csv(self):
@@ -35,22 +37,30 @@ class Classifier:
         except AttributeError as e:
             print(f'Whoops: {repr(e)}')
 
+    # Fit data using Naive Bayes classifier
     def fit(self):
         # pull data into vectors to create collection of text/tokens
-        vectorizer = CountVectorizer()
-        x = vectorizer.fit_transform(self.df[0])
-        encoder = LabelEncoder()
-        y = encoder.fit_transform(self.df[1])
+
+        x = self.vectorizer.fit_transform(self.df[0])
+        y = self.encoder.fit_transform(self.df[1])
 
         # split into train and test sets
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(x, y, test_size=0.2)
+
+        # Fit dataset in naive bayes classifier
+        self.nb.fit(self.x_train, self.y_train)
+
+    # Predict if @param email is rejection or not
+    def predict(self, email):
+        category_names = {'reject': 'reject', 'not_reject': 'not_reject'}
+        cod = self.nb.predict(self.vectorizer.transform([email]))
+        return category_names[self.encoder.inverse_transform(cod)[0]]
 
     def print_data(self):
         print(self.df.tail)
 
 
-model = Classifier()
-model.clean_data()
-model.fit()
-
-
+# model = Classifier()
+# model.clean_data()
+# model.fit()
+# print(model.predict('I found some job listings you may be interested in'))
