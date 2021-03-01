@@ -60,13 +60,16 @@ if retcode == 'OK':
                         except:
                             pass
 
-                typ, data = imap.store(num, '+FLAGS', '\\Seen')  # Mark msg as seen
                 print(body)  # Prints the body of the email
 
                 prediction = classifier.predict(body)
                 print(prediction)
-                if prediction == 'reject': # move to reject inbox
+                if prediction == 'reject':  # move to reject inbox
                     typ, data = imap.store(num, '+X-GM-LABELS', '"Application Updates"')
+
+                typ, data = imap.store(num, '-FLAGS', '\\Seen')
+                typ, data = imap.store(num, '+X-GM-LABELS', 'Checked')  # Add flag that email was checked whether reject or not
+                typ, data = imap.store(num, '+FLAGS', '\\Deleted')  # Delete from inbox
 
 
 # Close imap connection
