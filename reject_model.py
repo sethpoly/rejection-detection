@@ -21,7 +21,7 @@ class Classifier:
 
     # Retrieve most recent rejection data set from sheets API
     def get_csv(self):
-        data_sheet = acc.Spreadsheet('RejectionData').sheet
+        data_sheet = acc.Spreadsheet('RejectionData', 'Sheet1').sheet
         rows = data_sheet.get_all_values()
         return pd.DataFrame.from_records(rows)
 

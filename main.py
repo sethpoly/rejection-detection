@@ -3,13 +3,36 @@ import email
 import os
 import reject_model
 import re
+import service_account as acc
+from datetime import date
 
 # setup rejection detection data model
 classifier = reject_model.Classifier()
 classifier.clean_data()
 classifier.fit()
 
-# account credentials
+# Spreadsheet instance
+spreadsheet = acc.Spreadsheet('Applications', 'Rejections').sheet
+print(spreadsheet.get_all_values())
+
+
+# Add a row to spreadsheet of new application rejection
+# @param1: company_name,  @param2: email_body
+def add_reject_row(company_name, email_body):
+    print('Congrats, another rejection.')
+    curr_date = date.today()
+    try:
+        spreadsheet.append_row([company_name, email_body, curr_date])
+    except:
+        print('Failed to insert new row.')
+
+    spreadsheet.append_row([company_name, email_body, str(curr_date)])
+
+
+add_reject_row('CompanyName', 'email bodagjdgajdgja')
+
+
+# gmail account credentials
 username = os.environ['USERNAME']
 password = os.environ['PASSWORD']
 
@@ -61,9 +84,8 @@ if retcode == 'OK':
                     try:
                         if part.get_content_type().lower() == 'text/plain':  # Grab only plaintext
                             body = part.get_payload(decode=True).decode()
-                        elif part.get_content_type().lower() == 'text/html':  # strip html
-                            body = part.get_payload(decode=True).decode()
-                            body = re.sub('<[^<]+?>', '', body)
+                            body = re.sub('<[^<]+?>', '', body)  # Strip HTML tags
+                            body.strip()
                     except:
                         pass
 

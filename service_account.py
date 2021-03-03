@@ -11,14 +11,14 @@ class Spreadsheet:
     sheet = None  # Specific sheet in CSV file
 
     # Grab the name of spreadsheet on init
-    def __init__(self, sheet_name):
+    def __init__(self, sheet_name, sheet_page):
         self.sheet_name = sheet_name
-        self.open_sheet()
+        self.open_sheet(sheet_page)
 
     # Open spreadsheet for editing and parsing
-    def open_sheet(self):
+    def open_sheet(self, sheet_page):
         try:
-            self.sheet = self.client.open(self.sheet_name).sheet1
+            self.sheet = self.client.open(self.sheet_name).worksheet(sheet_page)
             print(f'Opened sheet: {self.sheet_name}')
         except gspread.SpreadsheetNotFound:
             print('Spreadsheet does not exist.')
