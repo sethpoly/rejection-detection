@@ -5,6 +5,7 @@ import reject_model
 import re
 import service_account as acc
 from datetime import date
+import traceback
 
 # setup rejection detection data model
 classifier = reject_model.Classifier()
@@ -13,7 +14,6 @@ classifier.fit()
 
 # Spreadsheet instance
 spreadsheet = acc.Spreadsheet('Applications', 'Rejections').sheet
-print(spreadsheet.get_all_values())
 
 
 # Add a row to spreadsheet of new application rejection
@@ -22,15 +22,15 @@ def add_reject_row(company_name, email_body):
     print('Congrats, another rejection.')
     curr_date = date.today()
     try:
-        spreadsheet.append_row([company_name, email_body, curr_date])
+        spreadsheet.append_row([company_name, email_body, curr_date.strftime('%Y/%m/%d')])
     except:
         print('Failed to insert new row.')
+        traceback.print_exc()
 
-    spreadsheet.append_row([company_name, email_body, str(curr_date)])
 
 
-add_reject_row('CompanyName', 'email bodagjdgajdgja')
 
+#add_reject_row('CompanyName', 'email bodagjdgajdgja')
 
 # gmail account credentials
 username = os.environ['USERNAME']
@@ -75,17 +75,19 @@ if retcode == 'OK':
             if isinstance(response_part, tuple):
                 original = email.message_from_bytes(response_part[1])
 
-                print(original['From'])
+                company_name = original['From']
+                print(company_name)
                 print(original['Subject'])
 
                 # Grab the body of the email
-                # if original.is_multipart():
                 for part in original.walk():
                     try:
                         if part.get_content_type().lower() == 'text/plain':  # Grab only plaintext
                             body = part.get_payload(decode=True).decode()
                             body = re.sub('<[^<]+?>', '', body)  # Strip HTML tags
-                            body.strip()
+                        else:
+                            body = part.get_payload(decode=True).decode()
+                            body = re.sub('<[^<]+?>', '', body)  # Strip HTML tags
                     except:
                         pass
 
@@ -95,6 +97,7 @@ if retcode == 'OK':
                 print(prediction)
                 if prediction == 'reject':  # move to reject inbox
                     typ, data = imap.store(num, '+X-GM-LABELS', '"Application Updates"')
+                    add_reject_row(company_name, body)  # Add entry to spreadsheet
 
                 typ, data = imap.store(num, '-FLAGS', '\\Seen')
                 typ, data = imap.store(num, '+X-GM-LABELS',
