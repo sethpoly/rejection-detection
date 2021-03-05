@@ -1,14 +1,11 @@
-import string, numpy
+import string
 import pandas as pd
 import service_account as acc
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import classification_report
-from sklearn.model_selection import cross_val_score
+
 
 
 class Classifier:
@@ -58,9 +55,3 @@ class Classifier:
 
     def print_data(self):
         print(self.df.tail)
-
-
-# model = Classifier()
-# model.clean_data()
-# model.fit()
-# print(model.predict('I found some job listings you may be interested in'))

@@ -1,11 +1,14 @@
 import imaplib
 import email
 import os
+import string
 import reject_model
 import re
 import service_account as acc
 from datetime import date
 import traceback
+from bs4 import BeautifulSoup
+
 
 # setup rejection detection data model
 classifier = reject_model.Classifier()
@@ -14,7 +17,6 @@ classifier.fit()
 
 # Spreadsheet instance
 spreadsheet = acc.Spreadsheet('Applications', 'Rejections').sheet
-
 
 # Add a row to spreadsheet of new application rejection
 # @param1: company_name,  @param2: email_body
@@ -28,9 +30,24 @@ def add_reject_row(company_name, email_body):
         traceback.print_exc()
 
 
+# Clean email output of all script tags/html/css etc
+def clean_text(text):
+    text = re.sub(r'\. \{.*\}', '', body)  # Strip CSS
+    text = remove_whitespace(text) # Remove invisible carriage returns etc
 
+    soup = BeautifulSoup(text, 'html.parser')
+    for s in soup(['script', 'style']):
+        s.extract()
+    return ' '.join(soup.stripped_strings)
 
-#add_reject_row('CompanyName', 'email bodagjdgajdgja')
+# Remove all white space and carriage returns
+def remove_whitespace(text):
+    chars = ['\n', '\t', '\r']
+    for ch in chars:
+        if ch in text:
+            text = text.replace(ch, '')
+    return text
+
 
 # gmail account credentials
 username = os.environ['USERNAME']
@@ -82,27 +99,27 @@ if retcode == 'OK':
                 # Grab the body of the email
                 for part in original.walk():
                     try:
-                        if part.get_content_type().lower() == 'text/plain':  # Grab only plaintext
-                            body = part.get_payload(decode=True).decode()
-                            body = re.sub('<[^<]+?>', '', body)  # Strip HTML tags
-                        else:
-                            body = part.get_payload(decode=True).decode()
-                            body = re.sub('<[^<]+?>', '', body)  # Strip HTML tags
+                        body = part.get_payload(decode=True).decode()
                     except:
                         pass
 
-                print(body)  # Prints the body of the email
+                body = clean_text(body)  # Clean formatting of email
+                print(body)
 
+                # Predict if the email is a rejection email
                 prediction = classifier.predict(body)
                 print(prediction)
                 if prediction == 'reject':  # move to reject inbox
                     typ, data = imap.store(num, '+X-GM-LABELS', '"Application Updates"')
                     add_reject_row(company_name, body)  # Add entry to spreadsheet
 
+                # Remove SEEN flag
                 typ, data = imap.store(num, '-FLAGS', '\\Seen')
+                # Move to CHECKED inbox
                 typ, data = imap.store(num, '+X-GM-LABELS',
-                                       'Checked')  # Add flag that email was checked whether reject or not
-                typ, data = imap.store(num, '+FLAGS', '\\Deleted')  # Delete from inbox
+                                       'Checked')
+                # Delete from inbox
+                typ, data = imap.store(num, '+FLAGS', '\\Deleted')
 
 # Close imap connection
 close_connection()

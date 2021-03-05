@@ -1,7 +1,5 @@
 import gspread
-import pandas as pd
 from oauth2client.service_account import ServiceAccountCredentials
-
 
 class Spreadsheet:
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']  # define the scope
@@ -22,7 +20,3 @@ class Spreadsheet:
             print(f'Opened sheet: {self.sheet_name}')
         except gspread.SpreadsheetNotFound:
             print('Spreadsheet does not exist.')
-
-# app_sheet = Spreadsheet('Applications').sheet
-#
-# print(app_sheet.acell('A400').value)
