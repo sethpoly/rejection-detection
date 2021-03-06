@@ -50,13 +50,11 @@ def remove_whitespace(text):
 
 
 # gmail account credentials
-print(os.environ)
 username = os.environ['GMAIL']
 password = os.environ['GMAIL_PASS']
 
 # create IMAP4 class with SSL
 imap = imaplib.IMAP4_SSL('imap.gmail.com')
-
 
 # authenticate (if fails: <allow less secure apps in gmail account>)
 def authenticate():
@@ -125,12 +123,13 @@ def check_mailbox():
 
     close_connection()
 
+# Main loop, every ten minutes check email for rejections
 try:
     while True:
         check_mailbox()
         print('Waiting 10 minutes to check email again...')
         time.sleep(600)
 except KeyboardInterrupt:
-    # Close imap connection
-    close_connection()
+    print('Interrupted... Ending application')
+    exit()
 

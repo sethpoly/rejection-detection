@@ -7,7 +7,6 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 
 
-
 class Classifier:
     def __init__(self):
         self.df = self.get_csv()
