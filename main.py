@@ -1,13 +1,13 @@
 import imaplib
 import email
 import os
-import string
 import reject_model
 import re
 import service_account as acc
 from datetime import date
 import traceback
 from bs4 import BeautifulSoup
+import time
 
 
 # setup rejection detection data model
@@ -32,7 +32,7 @@ def add_reject_row(company_name, email_body):
 
 # Clean email output of all script tags/html/css etc
 def clean_text(text):
-    text = re.sub(r'\. \{.*\}', '', body)  # Strip CSS
+    text = re.sub(r'\. \{.*\}', '', text)  # Strip CSS
     text = remove_whitespace(text) # Remove invisible carriage returns etc
 
     soup = BeautifulSoup(text, 'html.parser')
@@ -50,8 +50,9 @@ def remove_whitespace(text):
 
 
 # gmail account credentials
-username = os.environ['USERNAME']
-password = os.environ['PASSWORD']
+print(os.environ)
+username = os.environ['GMAIL']
+password = os.environ['GMAIL_PASS']
 
 # create IMAP4 class with SSL
 imap = imaplib.IMAP4_SSL('imap.gmail.com')
@@ -63,7 +64,7 @@ def authenticate():
         (retcode, capabilities) = imap.login(username, password)
         print(f'Logged in as {username}.')
     except imaplib.IMAP4.error:
-        print('Log in failed.')
+        traceback.print_exc()
 
 
 # Close the imap connection
@@ -78,48 +79,58 @@ def close_connection():
 # Login credentials with mail client
 authenticate()
 
-# Connect to mailbox
-imap.select('INBOX')
-(retcode, messages) = imap.search(None, '(UNSEEN)')  # Filter by unseen messages
-n = 0
-if retcode == 'OK':
-    for num in messages[0].split():  # Loop each unread email
-        print('Processing: ')
-        n = n + 1
-        body = ''
-        typ, data = imap.fetch(num, '(RFC822)')
-        for response_part in data:
-            if isinstance(response_part, tuple):
-                original = email.message_from_bytes(response_part[1])
+def check_mailbox():
+    # Connect to mailbox
+    imap.select('INBOX')
+    (retcode, messages) = imap.search(None, '(UNSEEN)')  # Filter by unseen messages
+    n = 0
+    if retcode == 'OK':
+        for num in messages[0].split():  # Loop each unread email
+            print('Processing: ')
+            n = n + 1
+            body = ''
+            typ, data = imap.fetch(num, '(RFC822)')
+            for response_part in data:
+                if isinstance(response_part, tuple):
+                    original = email.message_from_bytes(response_part[1])
 
-                company_name = original['From']
-                print(company_name)
-                print(original['Subject'])
+                    company_name = original['From']
+                    print(company_name)
+                    print(original['Subject'])
 
-                # Grab the body of the email
-                for part in original.walk():
-                    try:
-                        body = part.get_payload(decode=True).decode()
-                    except:
-                        pass
+                    # Grab the body of the email
+                    for part in original.walk():
+                        try:
+                            body = part.get_payload(decode=True).decode()
+                        except:
+                            pass
 
-                body = clean_text(body)  # Clean formatting of email
-                print(body)
+                    body = clean_text(body)  # Clean formatting of email
+                    print(body)
 
-                # Predict if the email is a rejection email
-                prediction = classifier.predict(body)
-                print(prediction)
-                if prediction == 'reject':  # move to reject inbox
-                    typ, data = imap.store(num, '+X-GM-LABELS', '"Application Updates"')
-                    add_reject_row(company_name, body)  # Add entry to spreadsheet
+                    # Predict if the email is a rejection email
+                    prediction = classifier.predict(body)
+                    print(prediction)
+                    if prediction == 'reject':  # move to reject inbox
+                        typ, data = imap.store(num, '+X-GM-LABELS', '"Application Updates"')
+                        add_reject_row(company_name, body)  # Add entry to spreadsheet
 
-                # Remove SEEN flag
-                typ, data = imap.store(num, '-FLAGS', '\\Seen')
-                # Move to CHECKED inbox
-                typ, data = imap.store(num, '+X-GM-LABELS',
-                                       'Checked')
-                # Delete from inbox
-                typ, data = imap.store(num, '+FLAGS', '\\Deleted')
+                    # Remove SEEN flag
+                    typ, data = imap.store(num, '-FLAGS', '\\Seen')
+                    # Move to CHECKED inbox
+                    typ, data = imap.store(num, '+X-GM-LABELS',
+                                           'Checked')
+                    # Delete from inbox
+                    typ, data = imap.store(num, '+FLAGS', '\\Deleted')
 
-# Close imap connection
-close_connection()
+    close_connection()
+
+try:
+    while True:
+        check_mailbox()
+        print('Waiting 10 minutes to check email again...')
+        time.sleep(600)
+except KeyboardInterrupt:
+    # Close imap connection
+    close_connection()
+
