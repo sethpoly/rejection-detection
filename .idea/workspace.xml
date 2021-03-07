@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0f510b1-d374-4663-85e6-332e8ba27b62" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reject_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/reject_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,10 +139,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615061209615">
+    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615062484250">
       <screen x="-1080" y="-290" width="1080" height="1890" />
     </state>
-    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1615061209615" />
+    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1615062484250" />
     <state x="798" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1613928276831" />
     <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1614972843897">
       <screen x="0" y="0" width="1920" height="1050" />
