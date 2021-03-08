@@ -9,14 +9,11 @@ import traceback
 from bs4 import BeautifulSoup
 import time
 
-
 # setup rejection detection data model
 classifier = reject_model.Classifier()
 classifier.clean_data()
 classifier.fit()
 
-# Spreadsheet instance
-spreadsheet = acc.Spreadsheet('Applications', 'Rejections').sheet
 
 # Add a row to spreadsheet of new application rejection
 # @param1: company_name,  @param2: email_body
@@ -126,6 +123,7 @@ def check_mailbox():
 # Main loop, every ten minutes check email for rejections
 try:
     while True:
+        spreadsheet = acc.Spreadsheet('Applications', 'Rejections').sheet  # open spreadsheet instance
         check_mailbox()
         print('Waiting 10 minutes to check email again...')
         time.sleep(600)
