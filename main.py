@@ -66,13 +66,13 @@ def authenticate():
 def close_connection():
     try:
         imap.close()
+        imap.logout()
         print('Closed the connection.')
     except imaplib.IMAP4.error:
         print('Error: Connection failed to close.')
 
+#authenticate()  # Login with imap
 
-# Login credentials with mail client
-authenticate()
 
 def check_mailbox():
     # Connect to mailbox
@@ -124,10 +124,14 @@ def check_mailbox():
 try:
     while True:
         spreadsheet = acc.Spreadsheet('Applications', 'Rejections').sheet  # open spreadsheet instance
-        check_mailbox()
+        imap = imaplib.IMAP4_SSL('imap.gmail.com')  # recreate IMAP4 class with SSL to avoid timeout
+        authenticate()  # login to gamil through imap
+        check_mailbox()  # check email
         print('Waiting 10 minutes to check email again...')
         time.sleep(600)
 except KeyboardInterrupt:
     print('Interrupted... Ending application')
     exit()
+
+
 
