@@ -8,6 +8,7 @@ from datetime import date
 import traceback
 from bs4 import BeautifulSoup
 import time
+import gspread
 
 # setup rejection detection data model
 classifier = reject_model.Classifier()
@@ -30,12 +31,13 @@ def add_reject_row(company_name, email_body):
 # Clean email output of all script tags/html/css etc
 def clean_text(text):
     text = re.sub(r'\. \{.*\}', '', text)  # Strip CSS
-    text = remove_whitespace(text) # Remove invisible carriage returns etc
+    text = remove_whitespace(text)  # Remove invisible carriage returns etc
 
     soup = BeautifulSoup(text, 'html.parser')
     for s in soup(['script', 'style']):
         s.extract()
     return ' '.join(soup.stripped_strings)
+
 
 # Remove all white space and carriage returns
 def remove_whitespace(text):
@@ -52,6 +54,7 @@ password = os.environ['GMAIL_PASS']
 
 # create IMAP4 class with SSL
 imap = imaplib.IMAP4_SSL('imap.gmail.com')
+
 
 # authenticate (if fails: <allow less secure apps in gmail account>)
 def authenticate():
@@ -71,7 +74,8 @@ def close_connection():
     except imaplib.IMAP4.error:
         print('Error: Connection failed to close.')
 
-#authenticate()  # Login with imap
+
+# authenticate()  # Login with imap
 
 
 def check_mailbox():
@@ -120,18 +124,19 @@ def check_mailbox():
 
     close_connection()
 
+
 # Main loop, every ten minutes check email for rejections
-try:
-    while True:
+while True:
+    try:
         spreadsheet = acc.Spreadsheet('Applications', 'Rejections').sheet  # open spreadsheet instance
         imap = imaplib.IMAP4_SSL('imap.gmail.com')  # recreate IMAP4 class with SSL to avoid timeout
         authenticate()  # login to gamil through imap
         check_mailbox()  # check email
         print('Waiting 10 minutes to check email again...')
         time.sleep(600)
-except KeyboardInterrupt:
-    print('Interrupted... Ending application')
-    exit()
-
-
-
+    except KeyboardInterrupt:
+        print('Interrupted... Ending application')
+        exit()
+    except gspread.exceptions.APIError:
+        print('Something went wrong, lets try this again.')
+        pass
