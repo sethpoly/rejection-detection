@@ -60,7 +60,7 @@ imap = imaplib.IMAP4_SSL('imap.gmail.com')
 def authenticate():
     try:
         (retcode, capabilities) = imap.login(username, password)
-        print(f'Logged in as {username}.')
+        print(f'Logged in as {username} at {time.strftime("%H:%M:%S", time.localtime())}.')
     except imaplib.IMAP4.error:
         traceback.print_exc()
 
