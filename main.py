@@ -132,8 +132,8 @@ while True:
         imap = imaplib.IMAP4_SSL('imap.gmail.com')  # recreate IMAP4 class with SSL to avoid timeout
         authenticate()  # login to gamil through imap
         check_mailbox()  # check email
-        print('Waiting 10 minutes to check email again...')
-        time.sleep(600)
+        print('Waiting 30 minutes to check email again...')
+        time.sleep(1800)
     except KeyboardInterrupt:
         print('Interrupted... Ending application')
         exit()
