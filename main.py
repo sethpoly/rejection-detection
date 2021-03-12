@@ -75,9 +75,6 @@ def close_connection():
         print('Error: Connection failed to close.')
 
 
-# authenticate()  # Login with imap
-
-
 def check_mailbox():
     # Connect to mailbox
     imap.select('INBOX')
@@ -125,15 +122,17 @@ def check_mailbox():
     close_connection()
 
 
-# Main loop, every ten minutes check email for rejections
+timer = 30  # Amount of minutes to wait after each email check
+
+# Main loop, every x minutes check email for rejections
 while True:
     try:
         spreadsheet = acc.Spreadsheet('Applications', 'Rejections').sheet  # open spreadsheet instance
         imap = imaplib.IMAP4_SSL('imap.gmail.com')  # recreate IMAP4 class with SSL to avoid timeout
         authenticate()  # login to gamil through imap
         check_mailbox()  # check email
-        print('Waiting 30 minutes to check email again...')
-        time.sleep(1800)
+        print(f'Waiting {timer} minutes to check email again...')
+        time.sleep(timer * 60)
     except KeyboardInterrupt:
         print('Interrupted... Ending application')
         exit()
