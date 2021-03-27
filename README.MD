@@ -24,7 +24,7 @@ Filters unread emails every 30 minutes, and categorizes them as rejection/non_re
 ![Preview](https://raw.githubusercontent.com/sethpoly/rejection-detection/master/screenshots/terminal.PNG) 
 
 \
-If rejection email is found, connect to Google Sheets API and create an entry in the spreadsheet containing the company that rejected me.
+If rejection email is found, connect to Google Sheets API and create an entry in the spreadsheet containing the company that rejected me, the email sent, and date of rejection.
 
 ![Preview](https://raw.githubusercontent.com/sethpoly/rejection-detection/master/screenshots/sheet.PNG)
 
