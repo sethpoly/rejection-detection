@@ -18,5 +18,10 @@ A useful machine learning script when sending out hundreds of job applications p
 - Developed a model to classify emails as either "rejection" or "non-rejection"
 - Implemented Naive Bayes classifier
 
+## Visual Example
+![Preview](https://raw.githubusercontent.com/sethpoly/rejection-detection/master/screenshots/terminal.PNG) 
+
+
 ## Technology Used
 Python, imaplib, pandas, sklearn, Google Drive API
+

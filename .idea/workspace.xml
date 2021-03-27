@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0f510b1-d374-4663-85e6-332e8ba27b62" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +21,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1onhP75rppfbHu4QlvjrbJyEgEX" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -30,10 +32,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PhoneRegex" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Seth\Desktop\rejection-automation\screenshots" />
       <recent name="C:\Users\Seth\Desktop\rejection-automation" />
     </key>
   </component>
@@ -139,35 +142,35 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615062484250">
+    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616525605028">
       <screen x="-1080" y="-290" width="1080" height="1890" />
     </state>
-    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1615062484250" />
+    <state x="-1080" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1616525605028" />
     <state x="798" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1613928276831" />
-    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1614972843897">
+    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1616766729796">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="280" key="FileChooserDialogImpl/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1614972843897" />
-    <state width="1899" height="299" key="GridCell.Tab.0.bottom" timestamp="1615323365950">
+    <state x="740" y="280" key="FileChooserDialogImpl/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1616766729796" />
+    <state width="1899" height="299" key="GridCell.Tab.0.bottom" timestamp="1615562299121">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1059" height="394" key="GridCell.Tab.0.bottom/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1615207296022" />
-    <state width="1899" height="299" key="GridCell.Tab.0.bottom/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1615323365950" />
-    <state width="1899" height="299" key="GridCell.Tab.0.center" timestamp="1615323365950">
+    <state width="1899" height="299" key="GridCell.Tab.0.bottom/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1615562299121" />
+    <state width="1899" height="299" key="GridCell.Tab.0.center" timestamp="1615562299121">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1059" height="394" key="GridCell.Tab.0.center/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1615207296022" />
-    <state width="1899" height="299" key="GridCell.Tab.0.center/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1615323365950" />
-    <state width="1899" height="299" key="GridCell.Tab.0.left" timestamp="1615323365950">
+    <state width="1899" height="299" key="GridCell.Tab.0.center/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1615562299121" />
+    <state width="1899" height="299" key="GridCell.Tab.0.left" timestamp="1615562299121">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1059" height="394" key="GridCell.Tab.0.left/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1615207296022" />
-    <state width="1899" height="299" key="GridCell.Tab.0.left/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1615323365950" />
-    <state width="1899" height="299" key="GridCell.Tab.0.right" timestamp="1615323365950">
+    <state width="1899" height="299" key="GridCell.Tab.0.left/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1615562299121" />
+    <state width="1899" height="299" key="GridCell.Tab.0.right" timestamp="1615562299121">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1059" height="394" key="GridCell.Tab.0.right/-1080.-290.1080.1890/0.0.1920.1050@-1080.-290.1080.1890" timestamp="1615207296022" />
-    <state width="1899" height="299" key="GridCell.Tab.0.right/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1615323365950" />
+    <state width="1899" height="299" key="GridCell.Tab.0.right/-1080.-290.1080.1890/0.0.1920.1050@0.0.1920.1050" timestamp="1615562299121" />
     <state width="1899" height="352" key="GridCell.Tab.1.bottom" timestamp="1615317751729">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
