@@ -2,7 +2,7 @@
 A useful machine learning script when sending out hundreds of job applications per week. Filters all rejection emails and organizes them in a live Google Sheets spreadsheet.
 
 ## What It Does
-- Parses all unread emails every 10 minutes within a Gmail account.
+- Parses all unread emails every 30 minutes within a Gmail account.
 - Determines if each email is a rejection or non_rejection using the machine learning classifier.
 - If a rejection email is found: 
     - move email to the "Rejection" inbox
@@ -19,8 +19,14 @@ A useful machine learning script when sending out hundreds of job applications p
 - Implemented Naive Bayes classifier
 
 ## Visual Example
+Filters unread emails every 30 minutes, and categorizes them as rejection/non_rejection:
+
 ![Preview](https://raw.githubusercontent.com/sethpoly/rejection-detection/master/screenshots/terminal.PNG) 
 
+\
+If rejection email is found, connect to Google Sheets API and create an entry in the spreadsheet containing the company that rejected me.
+
+![Preview](https://raw.githubusercontent.com/sethpoly/rejection-detection/master/screenshots/sheet.PNG)
 
 ## Technology Used
 Python, imaplib, pandas, sklearn, Google Drive API
