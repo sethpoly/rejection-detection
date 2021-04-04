@@ -28,14 +28,14 @@ class Spreadsheet:
 # Useful when building data-dashboard
 def organize_data():
     sheet = Spreadsheet('Applications', 'Main').sheet  # Open sheet
-    cell_list = sheet.range('I2:I600')
+    cell_list = sheet.range('J2:J600')
 
     for cell in range(len(cell_list)):
-        # if cell_list[cell].value == "True":
-        #     cell_list[cell].value = 'TRUE'
+        if cell_list[cell].value == "":
+            cell_list[cell].value = 'NONE'
         print(cell_list[cell].value)
 
-    #sheet.update_cells(cell_list)
+    sheet.update_cells(cell_list)
 
 
 organize_data()
