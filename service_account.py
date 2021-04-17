@@ -37,4 +37,4 @@ def organize_data():
     sheet.update_cells(cell_list)
 
 
-organize_data()
+#organize_data()
